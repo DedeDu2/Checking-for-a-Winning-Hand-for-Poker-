@@ -1,0 +1,22 @@
+def is_flush(hand):
+    suits = [card['Suit'] for card in hand]
+    return len(set(suits)) == 1
+
+def is_straight(hand):
+    sorted_ranks = sorted([ranks.index(card['Rank']) for card in hand])
+    return max(sorted_ranks) - min(sorted_ranks) == len(hand) - 1
+
+def is_poker(hand):
+    return is_flush(hand) and is_straight(hand)
+
+# Example usage
+sample_hand = [
+    {'Rank': '10', 'Suit': 'Hearts'},
+    {'Rank': 'Jack', 'Suit': 'Hearts'},
+    {'Rank': 'Queen', 'Suit': 'Hearts'},
+    {'Rank': 'King', 'Suit': 'Hearts'},
+    {'Rank': 'Ace', 'Suit': 'Hearts'}
+]
+
+if is_poker(sample_hand):
+    print("Congratulations! You have a poker hand!")
